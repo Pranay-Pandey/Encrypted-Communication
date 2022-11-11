@@ -63,7 +63,74 @@ form button:hover
 	justify-content: center;
 	align-items: center;
 	margin: 0.5rem;
-	background: white;
+	background: white;	
+}
 
-	
+.upper-div {
+	min-height: 40vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.upper-div div{
+	width:50rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.upper-div h4{
+	font-size: 2rem;
+	font-weight: 300;
+	color: black;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+	text-align: center;
+}
+
+select{
+	-webkit-animation: none;
+	-moz-animation: none;
+	appearance: none;
+	outline: none;
+	border: none;
+	width: 10rem;
+	cursor: pointer;
+	padding: 1rem;
+}
+
+
+.select {
+	margin: 1rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.select::after{
+	content: "\25BC";
+	position: absolute;
+	padding: 1rem;
+	pointer-events: none;
+	background: #0df7ad;
+}
+
+.Left-Users div{
+	align-items: center;
+	justify-content: center;
+	min-width: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Left-Users input{
+	width: 40px;
+}
+
+#message-to-send{
+	width : 50rem;
+	height: 80px;
+
 }

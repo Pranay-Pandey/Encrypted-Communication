@@ -3,12 +3,35 @@ const tempInput = document.querySelector('.main_input');
 const tempButton = document.getElementById('main_button');
 const tempList = document.querySelector('.viewer_ul');
 const ViewButton = document.getElementById('view-button');
+const viewerList = document.querySelector('.message-ul');
+const ViewAsButton = document.getElementById('view-message-as');
 
+
+const NewUserid = document.getElementById('new-user-id');
+const NewUserp = document.getElementById('new-user-p');
+const NewUserq = document.getElementById('new-user-q');
+const NewUsere = document.getElementById('new-user-e');
+const NewUserd = document.getElementById('new-user-d');
+
+const NewUserButton = document.getElementById('new-user-button');
+
+const select = document.querySelector('.filter-user');
+const select2 = document.querySelector('.filter-user2');
+const select3 = document.querySelector('.filter-user-from');
+const select4 = document.querySelector('.filter-user-to');
+const select5 = document.querySelector('.filter-user-view');
+
+const SendMessageButton = document.getElementById('send-message-button');
+const TextMessage = document.getElementById('message-to-send');
 
 //Event Listners
 tempButton.addEventListener('click', addtolist);
 ViewButton.addEventListener('click', Checking);
+NewUserButton.addEventListener('click', MakeNewUser);
+SendMessageButton.addEventListener('click', MessageSend);
+ViewAsButton.addEventListener('click', MessageView);
 //Functions
+All_Messages = [];
 
 function addtolist(event){
     event.preventDefault();
@@ -83,8 +106,13 @@ class User
     }
 }
 
-var One = new User(1, 13, 7, 5, 29);
+var AllUsers = []
+
+var One = new User(1, 191, 827, 37, 33933);
 var Two = new User(0, 281, 167, 39423, 26767);
+AllUsers.push(One);
+AllUsers.push(Two);
+
 function RSA(message)
 {
     //message going from A to B
@@ -336,21 +364,173 @@ function decrypt(person1, person2, arr)
     
 
 }
-function Checking()
+function Checking(event)
 {
-    // const item = e.target;
-
-    // if (item.classList[0]==='view-button'){
-    //     const te = document.getElementsByTagName('li');
-    //     const toddsgo = item.parentElement;
-    //     // console.log(te);
     event.preventDefault();
     const listItems = document.querySelectorAll('.viewer_ul li');
     for (let i = 0; i <= listItems.length - 1; i++) {
         console.log(listItems[i].innerText);
         k = listItems[i].innerHTML;
-        
         strn = decrypt(One, Two, k);
-        listItems[i].innerText = strn;
+        listItems[i].innerHTML = strn;
     }
 }
+
+function MakeNewUser() {
+    var newUser = new User(NewUserid.value, NewUserp.value, NewUserq.value, NewUsere.value, NewUserd.value);
+    AllUsers.push(newUser);
+    let tempOption = document.createElement("OPTION");
+    let tempOption2 = document.createElement("OPTION");
+    let tempOption3 = document.createElement("OPTION");
+    let tempOption4 = document.createElement("OPTION");
+    let tempOptionVal = document.createTextNode(NewUserid.value.toString());
+    let tempOptionVal2 = document.createTextNode(NewUserid.value.toString());
+    let tempOptionVal3 = document.createTextNode(NewUserid.value.toString());
+    let tempOptionVal4 = document.createTextNode(NewUserid.value.toString());
+    tempOption.appendChild(tempOptionVal);
+    tempOption2.appendChild(tempOptionVal2);
+    tempOption3.appendChild(tempOptionVal3);
+    tempOption4.appendChild(tempOptionVal4);
+
+    select.insertBefore(tempOption, select.lastChild);
+    select2.insertBefore(tempOption2, select2.lastChild);
+    select3.insertBefore(tempOption3, select3.lastElementChild);
+    select4.insertBefore(tempOption4, select4.lastChild);
+
+    
+}
+
+
+
+function MessageSend(event)
+{
+    event.preventDefault();
+
+    let Ufrom = parseInt(select3.value);
+    let Uto = parseInt(select4.value);
+    if (isNaN(Uto)){
+        console.log("Not Possible");
+    }
+    else
+    
+    {let complete_message = TextMessage.value;
+
+    encrypted_message = RSA_ecnrypt(AllUsers[Ufrom], AllUsers[Uto], complete_message);
+
+    console.log(encrypted_message);
+
+    All_Messages.push([encrypted_message, Ufrom, Uto]);
+
+
+
+    const mess = document.createElement("div");
+    mess.classList.add("mess");
+
+    const newEle = document.createElement("li");
+    newEle.innerText = String(encrypted_message);
+    newEle.classList.add('mess-item');
+    mess.appendChild(newEle);
+
+    viewerList.append(mess);
+
+    TextMessage.value = "";
+
+}
+}
+
+function MessageView(event){
+    event.preventDefault();
+    const listItems = document.querySelectorAll('.message-ul li');
+    var usecase = parseInt(select5.value);
+    if (isNaN(usecase))
+    {
+        console.log("Enter Which Viewver as");
+    }
+    else
+    {
+    for (let i = 0; i <= listItems.length - 1; i++) {
+        console.log(listItems[i].innerText);
+        k = listItems[i].innerHTML;
+        strn = decrypt(One, AllUsers[usecase], k);
+        listItems[i].innerHTML = strn;
+    }
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Initial Users
+
+tempOption = document.createElement("OPTION");
+tempOption2 = document.createElement("OPTION");
+tempOption3 = document.createElement("OPTION");
+tempOption4 = document.createElement("OPTION");
+tempOption5 = document.createElement("OPTION");
+
+
+tempOptionVal = document.createTextNode("0");
+tempOptionVal2 = document.createTextNode("0");
+tempOptionVal3 = document.createTextNode("0");
+tempOptionVal4 = document.createTextNode("0");
+tempOptionVal5 = document.createTextNode("0");
+
+
+tempOption.appendChild(tempOptionVal);
+tempOption2.appendChild(tempOptionVal2);
+tempOption3.appendChild(tempOptionVal3);
+tempOption4.appendChild(tempOptionVal4);
+tempOption5.appendChild(tempOptionVal5);
+
+
+select.insertBefore(tempOption, select.lastChild);
+select2.insertBefore(tempOption2, select2.lastChild);
+select3.insertBefore(tempOption3, select3.lastChild);
+select4.insertBefore(tempOption4, select4.lastChild);
+select5.insertBefore(tempOption5, select5.lastChild);
+
+
+
+tempOption = document.createElement("OPTION");
+tempOption2 = document.createElement("OPTION");
+tempOption3 = document.createElement("OPTION");
+tempOption4 = document.createElement("OPTION");
+tempOption5 = document.createElement("OPTION");
+
+
+tempOptionVal = document.createTextNode("1");
+tempOptionVal2 = document.createTextNode("1");
+tempOptionVal3 = document.createTextNode("1");
+tempOptionVal4 = document.createTextNode("1");
+tempOptionVal5 = document.createTextNode("1");
+
+
+tempOption.appendChild(tempOptionVal);
+tempOption2.appendChild(tempOptionVal2);
+tempOption3.appendChild(tempOptionVal3);
+tempOption4.appendChild(tempOptionVal4);
+tempOption5.appendChild(tempOptionVal5);
+
+
+select.insertBefore(tempOption, select.lastChild);
+select2.insertBefore(tempOption2, select2.lastChild);
+select3.insertBefore(tempOption3, select3.lastChild);
+select4.insertBefore(tempOption4, select4.lastChild);
+select5.insertBefore(tempOption5, select5.lastChild);
+
+
+
+

@@ -43,7 +43,13 @@
     <form>
       <input type="text" class="main_input">
       <button id="main_button" type="submit"> submit</button>
+      <div class="select">
+        <select name="select-user" class="filter-user">
+          <option value="">View AS</option>
+        </select>
+      </div>
       <button id="view-button" type="submit">View</button>
+      
     </form>
 
     <div class="viewer">
@@ -51,6 +57,66 @@
 
     </div>
   </div>
+
+  <div class="upper-div">
+    <div class="Left-Users">
+      <h4>Users</h4> 
+      <div> 
+      <select name="select-user" class="filter-user2">
+        <option value="">Users</option>
+      </select>
+      </div>
+
+      <h5>Make New User</h5>
+      <input type="number" id="new-user-id" placeholder="id"> 
+      <input type="number" id="new-user-p" placeholder="p"> 
+      <input type="number" id="new-user-q" placeholder="q"> 
+      <input type="number" id="new-user-e" placeholder="e"> 
+      <input type="number" id="new-user-d" placeholder="d"> 
+      <button id="new-user-button" type="submit">Make New User</button>
+      
+      
+
+    </div>
+
+    <div class="Right-Send-Message">
+      <h4>Send Message</h4> 
+      From User<select name="select-user-from" class="filter-user-from">
+        <option value="">Users</option>
+      </select>
+      To User<select name="select-user-to" class="filter-user-to">
+        <option value="">Users</option>
+      </select>
+      <div>
+        <!-- <input type="text" id="message-to-send">  -->
+        <textarea name="Text1" cols="40" rows="5" id="message-to-send"></textarea>
+      </div>
+      <button id="send-message-button" type="submit">
+        Send Message
+      </button>
+
+
+
+    </div>
+
+  </div>
+
+  <div class="lower-div">
+    <div class="All-messages">
+      <h2> All Messages</h2>
+      <select name="select-user-to" class="filter-user-view">
+        <option value="">Users</option>
+      </select>
+      <button id="view-message-as" type="submit">View Message As</button>
+
+      <div class="message-ul-holder">
+        <ul class="message-ul">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <script src="../JS/app.js"></script>
 
     </body>
