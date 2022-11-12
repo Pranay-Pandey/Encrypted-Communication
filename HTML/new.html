@@ -27,11 +27,11 @@
             <div class="bar"></div>
           </div>
           <ul>
-            <li><a href="#hero" data-after="Home">Home</a></li>
+            <!-- <li><a href="#hero" data-after="Home">Home</a></li>
             <li><a href="#services" data-after="Service">Services</a></li>
             <li><a href="#projects" data-after="Projects">Projects</a></li>
             <li><a href="#about" data-after="About">About</a></li>
-            <li><a href="#contact" data-after="Contact">Contact</a></li>
+            <li><a href="#contact" data-after="Contact">Contact</a></li> -->
           </ul>
         </div>
       </div>
@@ -81,12 +81,14 @@
 
     <div class="Right-Send-Message">
       <h4>Send Message</h4> 
+      <div class="inside">
       From User<select name="select-user-from" class="filter-user-from">
         <option value="">Users</option>
       </select>
       To User<select name="select-user-to" class="filter-user-to">
         <option value="">Users</option>
       </select>
+    </div>
       <div>
         <!-- <input type="text" id="message-to-send">  -->
         <textarea name="Text1" cols="40" rows="5" id="message-to-send"></textarea>
@@ -104,11 +106,10 @@
   <div class="lower-div">
     <div class="All-messages">
       <h2> All Messages</h2>
+      <button id="view-message-as" type="submit">View Message As</button>
       <select name="select-user-to" class="filter-user-view">
         <option value="">Users</option>
       </select>
-      <button id="view-message-as" type="submit">View Message As</button>
-
       <div class="message-ul-holder">
         <ul class="message-ul">
 

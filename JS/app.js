@@ -67,7 +67,7 @@ function change(nat_str)
         cur += 3
         transformed.push(cur)
     }
-    console.log(transformed)
+    // console.log(transformed)
     
     stringing = ""
     for(i=0;i<nat_str.length;i++)
@@ -75,7 +75,7 @@ function change(nat_str)
         cur = String.fromCharCode(transformed[i])
         stringing = stringing+cur;
     }
-    console.log(stringing)
+    // console.log(stringing)
     return [stringing,transformed];
 }
 
@@ -108,10 +108,13 @@ class User
 
 var AllUsers = []
 
-var One = new User(1, 191, 827, 37, 33933);
-var Two = new User(0, 281, 167, 39423, 26767);
+var One = new User(0, 191, 827, 37, 33933);
+var Two = new User(1, 281, 167, 39423, 26767);
+var Three = new User(2, 181, 431, 97, 64633);
 AllUsers.push(One);
 AllUsers.push(Two);
+AllUsers.push(Three);
+
 
 function RSA(message)
 {
@@ -173,7 +176,8 @@ function finalRSA(message)
     // (m**25)%437; 
 
     decrypted = powerMod(encrpted, 301, 437);
-    console.log("MEssage = ",m, " and Decrypted = ", decrypted);
+    // console.log("MEssage = ",m, " and Decrypted = ", decrypted);
+
     temp = decrypted;
     while(temp>=1)
     {
@@ -284,7 +288,7 @@ function RSA_Comm(person1, person2, str_to_transfer)
     
     
     decrypted = powerMod(encrpted, d, n);
-    console.log(m, d, n);
+    // console.log(m, d, n);
     temp = decrypted;
     while(temp>=1)
     {
@@ -377,27 +381,40 @@ function Checking(event)
 }
 
 function MakeNewUser() {
+    if (NewUserid.value==="" || NewUserp.value==="" ||NewUserq.value==="" || NewUsere.value==="" || NewUserd.value==="")
+    {
+        console.log("Add all correct values ");
+    }
+    else
+    {
+        console.log("New User = " , NewUserid.value, " created");
     var newUser = new User(NewUserid.value, NewUserp.value, NewUserq.value, NewUsere.value, NewUserd.value);
     AllUsers.push(newUser);
     let tempOption = document.createElement("OPTION");
     let tempOption2 = document.createElement("OPTION");
     let tempOption3 = document.createElement("OPTION");
     let tempOption4 = document.createElement("OPTION");
+    let tempOption5 = document.createElement("OPTION");
+
     let tempOptionVal = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal2 = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal3 = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal4 = document.createTextNode(NewUserid.value.toString());
+    let tempOptionVal5 = document.createTextNode(NewUserid.value.toString());
+
     tempOption.appendChild(tempOptionVal);
     tempOption2.appendChild(tempOptionVal2);
     tempOption3.appendChild(tempOptionVal3);
     tempOption4.appendChild(tempOptionVal4);
+    tempOption5.appendChild(tempOptionVal5);
+
 
     select.insertBefore(tempOption, select.lastChild);
     select2.insertBefore(tempOption2, select2.lastChild);
     select3.insertBefore(tempOption3, select3.lastElementChild);
     select4.insertBefore(tempOption4, select4.lastChild);
-
-    
+    select5.insertBefore(tempOption5, select5.lastChild);
+    }
 }
 
 
@@ -408,7 +425,7 @@ function MessageSend(event)
 
     let Ufrom = parseInt(select3.value);
     let Uto = parseInt(select4.value);
-    if (isNaN(Uto)){
+    if (isNaN(Uto) || isNaN(Ufrom) || Uto===Ufrom){
         console.log("Not Possible");
     }
     else
@@ -417,11 +434,9 @@ function MessageSend(event)
 
     encrypted_message = RSA_ecnrypt(AllUsers[Ufrom], AllUsers[Uto], complete_message);
 
-    console.log(encrypted_message);
+    // console.log(encrypted_message);
 
     All_Messages.push([encrypted_message, Ufrom, Uto]);
-
-
 
     const mess = document.createElement("div");
     mess.classList.add("mess");
@@ -434,7 +449,6 @@ function MessageSend(event)
     viewerList.append(mess);
 
     TextMessage.value = "";
-
 }
 }
 
@@ -449,14 +463,41 @@ function MessageView(event){
     else
     {
     for (let i = 0; i <= listItems.length - 1; i++) {
-        console.log(listItems[i].innerText);
+        // console.log(listItems[i].innerText);
         k = listItems[i].innerHTML;
+        
         strn = decrypt(One, AllUsers[usecase], k);
-        listItems[i].innerHTML = strn;
+        [m, fro, to] = All_Messages[i];
+        d = AllUsers[fro].get_private_key();
+        n = AllUsers[fro].get_n();
+        m = parseInt(k.split(",")[0]);
+        currdigital_footprint = [m, powerMod(m,d,n)];
+
+        var ver = verify_digital_signature(currdigital_footprint, Two, One);
+        var specify = " Digital Signature Verified:From 1";
+        if (ver===false)
+        {
+            specify = " Digital Signature not Verified: not From 1";
+        }
+        if (strn==="")
+        {}
+        else{
+        listItems[i].innerHTML = strn+ specify;}
     }
 }
+}
 
-
+function verify_digital_signature(digital_footprint, fromperson, twoperson)
+{
+    [term_one, term_two] = digital_footprint;
+    n = fromperson.get_n();
+    e = fromperson.get_public_key();
+    if (powerMod(term_two,e,n)===(term_one%n))
+    {
+        console.log("Digital SIgnature Verified");
+        return true;
+    }
+    return false;
 }
 
 
@@ -469,11 +510,11 @@ function MessageView(event){
 
 
 
+b = AllUsers[0].n;
+Initial_users = ['0','1'];
 
-
-
-
-//Initial Users
+for(let i=0;i<AllUsers.length;i++)
+{
 
 tempOption = document.createElement("OPTION");
 tempOption2 = document.createElement("OPTION");
@@ -482,11 +523,11 @@ tempOption4 = document.createElement("OPTION");
 tempOption5 = document.createElement("OPTION");
 
 
-tempOptionVal = document.createTextNode("0");
-tempOptionVal2 = document.createTextNode("0");
-tempOptionVal3 = document.createTextNode("0");
-tempOptionVal4 = document.createTextNode("0");
-tempOptionVal5 = document.createTextNode("0");
+tempOptionVal = document.createTextNode(AllUsers[i].id);
+tempOptionVal2 = document.createTextNode(AllUsers[i].id);
+tempOptionVal3 = document.createTextNode(AllUsers[i].id);
+tempOptionVal4 = document.createTextNode(AllUsers[i].id);
+tempOptionVal5 = document.createTextNode(AllUsers[i].id);
 
 
 tempOption.appendChild(tempOptionVal);
@@ -501,35 +542,7 @@ select2.insertBefore(tempOption2, select2.lastChild);
 select3.insertBefore(tempOption3, select3.lastChild);
 select4.insertBefore(tempOption4, select4.lastChild);
 select5.insertBefore(tempOption5, select5.lastChild);
-
-
-
-tempOption = document.createElement("OPTION");
-tempOption2 = document.createElement("OPTION");
-tempOption3 = document.createElement("OPTION");
-tempOption4 = document.createElement("OPTION");
-tempOption5 = document.createElement("OPTION");
-
-
-tempOptionVal = document.createTextNode("1");
-tempOptionVal2 = document.createTextNode("1");
-tempOptionVal3 = document.createTextNode("1");
-tempOptionVal4 = document.createTextNode("1");
-tempOptionVal5 = document.createTextNode("1");
-
-
-tempOption.appendChild(tempOptionVal);
-tempOption2.appendChild(tempOptionVal2);
-tempOption3.appendChild(tempOptionVal3);
-tempOption4.appendChild(tempOptionVal4);
-tempOption5.appendChild(tempOptionVal5);
-
-
-select.insertBefore(tempOption, select.lastChild);
-select2.insertBefore(tempOption2, select2.lastChild);
-select3.insertBefore(tempOption3, select3.lastChild);
-select4.insertBefore(tempOption4, select4.lastChild);
-select5.insertBefore(tempOption5, select5.lastChild);
+}
 
 
 
