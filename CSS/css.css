@@ -64,9 +64,20 @@ form button:hover
 	justify-content: center;
 	align-items: center;
 	margin: 0.5rem;
-	background: white;	
+	background: rgb(255, 255, 255);	
 	text-align: center;
 	list-style: none;
+	position: relative;
+}
+
+.All-messages{
+	align-items: center;
+	justify-content: center;
+	width:100%;
+	margin: 10px;
+	text-align: center;
+
+
 }
 
 .todo-item ,.mess-item{
@@ -74,8 +85,20 @@ form button:hover
 	justify-content: center;
 	align-items: center;
 	margin: 0.5rem;
-	background: white;	
+	background: white;
 	text-align: center;
+	width: 100%;
+	overflow: auto;
+}
+
+.mess {
+	width: 100%;
+}
+
+.vir, .message-ul-holder {
+	display: block;
+	justify-content: center;
+	align-items: center;
 }
 
 .upper-div {
@@ -170,7 +193,7 @@ button:hover
 	align-items: center;
 	justify-content: center;
 	min-width: 20vh;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
 }
