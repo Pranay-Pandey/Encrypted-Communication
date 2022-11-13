@@ -390,26 +390,26 @@ function MakeNewUser() {
         console.log("New User = " , NewUserid.value, " created");
     var newUser = new User(NewUserid.value, NewUserp.value, NewUserq.value, NewUsere.value, NewUserd.value);
     AllUsers.push(newUser);
-    let tempOption = document.createElement("OPTION");
+    // let tempOption = document.createElement("OPTION");
     let tempOption2 = document.createElement("OPTION");
     let tempOption3 = document.createElement("OPTION");
     let tempOption4 = document.createElement("OPTION");
     let tempOption5 = document.createElement("OPTION");
 
-    let tempOptionVal = document.createTextNode(NewUserid.value.toString());
+    // let tempOptionVal = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal2 = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal3 = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal4 = document.createTextNode(NewUserid.value.toString());
     let tempOptionVal5 = document.createTextNode(NewUserid.value.toString());
 
-    tempOption.appendChild(tempOptionVal);
+    // tempOption.appendChild(tempOptionVal);
     tempOption2.appendChild(tempOptionVal2);
     tempOption3.appendChild(tempOptionVal3);
     tempOption4.appendChild(tempOptionVal4);
     tempOption5.appendChild(tempOptionVal5);
 
 
-    select.insertBefore(tempOption, select.lastChild);
+    // select.insertBefore(tempOption, select.lastChild);
     select2.insertBefore(tempOption2, select2.lastChild);
     select3.insertBefore(tempOption3, select3.lastElementChild);
     select4.insertBefore(tempOption4, select4.lastChild);
@@ -516,28 +516,28 @@ Initial_users = ['0','1'];
 for(let i=0;i<AllUsers.length;i++)
 {
 
-tempOption = document.createElement("OPTION");
+// tempOption = document.createElement("OPTION");
 tempOption2 = document.createElement("OPTION");
 tempOption3 = document.createElement("OPTION");
 tempOption4 = document.createElement("OPTION");
 tempOption5 = document.createElement("OPTION");
 
 
-tempOptionVal = document.createTextNode(AllUsers[i].id);
+// tempOptionVal = document.createTextNode(AllUsers[i].id);
 tempOptionVal2 = document.createTextNode(AllUsers[i].id);
 tempOptionVal3 = document.createTextNode(AllUsers[i].id);
 tempOptionVal4 = document.createTextNode(AllUsers[i].id);
 tempOptionVal5 = document.createTextNode(AllUsers[i].id);
 
 
-tempOption.appendChild(tempOptionVal);
+// tempOption.appendChild(tempOptionVal);
 tempOption2.appendChild(tempOptionVal2);
 tempOption3.appendChild(tempOptionVal3);
 tempOption4.appendChild(tempOptionVal4);
 tempOption5.appendChild(tempOptionVal5);
 
 
-select.insertBefore(tempOption, select.lastChild);
+// select.insertBefore(tempOption, select.lastChild);
 select2.insertBefore(tempOption2, select2.lastChild);
 select3.insertBefore(tempOption3, select3.lastChild);
 select4.insertBefore(tempOption4, select4.lastChild);

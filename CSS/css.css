@@ -76,8 +76,16 @@ form button:hover
 	width:100%;
 	margin: 10px;
 	text-align: center;
+}
 
+#new-user-input input{
+	border-radius: 5px;
+	width: 50px;
+	margin: 2px;
+}
 
+#make-new-user-header{
+	align-items: center;
 }
 
 .todo-item ,.mess-item{
@@ -110,7 +118,7 @@ form button:hover
 }
 
 .upper-div div{
-	width:50rem;
+	width: 50rem;
 	align-items: center;
 	justify-content: center;
 }
@@ -134,9 +142,9 @@ select{
 	width: 10rem;
 	cursor: pointer;
 	padding: 1rem;
-	background-color: #b9fff7;
+	background-color: #f1eea4;
+	border-radius: 5px;
 }
-
 
 .select {
 	margin: 1rem;
@@ -211,4 +219,16 @@ button:hover
 	padding: 0.4rem;
 	font-size: 1rem;
 	border: none;
+}
+
+#view-message-as {
+	border-radius: 10px 0 0 10px;
+}
+
+textarea {
+	border-radius: 10px;
+	padding: 0.4rem;
+	font-size: 1rem;
+	border: none;
+
 }
