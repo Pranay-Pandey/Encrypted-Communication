@@ -41,7 +41,10 @@ function addtolist(event){
 
     const newEle = document.createElement("li");
     newEle.innerText = String(tempora(tempInput.value));
-    newEle.classList.add('todo-item');
+    // newEle.classList.add('todo-item');
+    newEle.classList.add('list-group-item');
+
+    
     todo.appendChild(newEle);
 
     // const ViewButton = document.createElement('button');
