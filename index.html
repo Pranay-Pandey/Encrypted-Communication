@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptosystem</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        [class*="col"]{
+            padding: 1rem;
+            background-color: #3be3e1;
+            /* background-image: linear-gradient(120deg, #fdb0dd, #f4f47a);     */
+            border: 2px solid #fff;
+            color: rgb(45, 45, 45);
+        }
+
+        [class*="image-show"]{
+            margin-top: 35px;
+            height: 300px;
+        }
+
+        [class*="defi-height"]{
+            height: 400px;
+        }     
+    </style>
+</head>
+<body>
+
+    <div class="container-md border">
+
+        <div class="row">
+            <div class="col-8 col-sm-12 col-md-8"><h2>Cyptographic Communication Between Users</h2></div>
+        </div>
+        <div class="row image-show"><img src="./CSS/rsa-encryption-algorithm.png" class="img-fluid" alt="..." style="overflow: hidden"></div>
+        <div class="container text-center">
+            <div class="row trail">
+                <div class="col-12"><h4>Encoding and Decoding Text Message</h4></div>
+                <div class="input-group">
+                    <input type="text" class="form-control main_input" placeholder="Type Message" aria-label="Recipient's username with two button addons">
+                    <button class="btn btn-outline-secondary" type="button" id="main_button">Send Message</button>
+                    <button class="btn btn-outline-secondary" type="button" id="view-button">View</button>
+                </div>
+                <ul class="list-group list-group-flush viewer_ul">
+
+                </ul>
+            </div>
+
+
+        <div class="row">
+            <div class="col-6 container text-center">
+                <div class="row text-center">
+                    <div class="col-center"><h4>Users</h4></div>
+                </div>
+                <div class="row border-0">
+                    <div class="col-4 border-0" style='margin-top: 1rem; margin-bottom: 1rem;'>All Users</div>
+                    <div class="col-8 border-0" style='margin-top: 1rem; margin-bottom: 1rem;'>
+                        <!-- All Users -->
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              All Users
+                            </button>
+                            <ul class="dropdown-menu new-users-dropdown">
+                            </ul>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <!-- <span class="input-group-text">First and last name</span> -->
+                        <input type="number" id="new-user-id"aria-label="First name" class="form-control" placeholder="id">
+                        <input type="number" id="new-user-p" aria-label="Last name" class="form-control" placeholder="p">
+                        <input type="number" id="new-user-q" aria-label="First name" class="form-control" placeholder="q">
+                        <input type="number" id="new-user-e" aria-label="Last name" class="form-control" placeholder="e">
+                        <input type="number" id="new-user-d" aria-label="Last name" class="form-control" placeholder="d">
+                        <button class="btn btn-outline-secondary" type="button" id="new-user-button">Make New User</button>
+                      </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="row text-center">
+                        <div class="col-center"><h4>Send Message</h4></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 border-0">
+                        <div class="row">
+                            <div class="col-5 border-0">From User</div>
+                            <div class="col-7 border-0">
+                                <select class="form-select form-select-sm filter-user-from" aria-label=".form-select-sm example">
+                                    <option selected>Open this select menu</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 border-0">
+                        <div class="row">
+                            <div class="col-5 border-0">To User</div>
+                            <div class="col-7 border-0">
+                                <select class="form-select form-select-sm filter-user-to" aria-label=".form-select-sm example">
+                                    <option selected>Open this select menu</option>
+                                    
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating">
+                        <textarea class="form-control message-to-send" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
+                        <label for="floatingTextarea">Type Message to Send</label>
+                    </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <button type="button" class="btn btn-secondary btn-sm" id="send-message-button">Send Message</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col border-0"><h4>All Messages</h4></div>
+        </div>
+        <div class="row ">
+            <div class="col-5 border-0" style="text-align-last: end;">View Message as</div>
+            <div class="col-2 border-0">
+                <select class="form-select form-select-sm filter-user-view" aria-label=".form-select-sm example">
+                    <option selected>Open this select menu</option>
+                  </select>
+            </div>
+            <div class="col-2 border-0">
+                <button type="button" class="btn btn-secondary btn-sm" id="view-message-as" >View Message</button>
+
+            </div>
+            <div class="col border-0"></div>
+
+        </div>
+        <ul class="list-group list-group-flush message-ul">
+
+        </ul>
+
+        </div>
+    </div>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="./JS/js_for_bootstrap.js"></script>
+</body>
+</html>
