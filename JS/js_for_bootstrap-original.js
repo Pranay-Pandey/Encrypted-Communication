@@ -69,6 +69,31 @@ function addtolist(event){
     }
 }
 
+
+
+
+
+function change(nat_str)
+{
+    transformed = []
+    for(i=0;i<nat_str.length;i++)
+    {
+        cur = nat_str.charCodeAt(i);
+        cur += 3
+        transformed.push(cur)
+    }
+    // console.log(transformed)
+    
+    stringing = ""
+    for(i=0;i<nat_str.length;i++)
+    {
+        cur = String.fromCharCode(transformed[i])
+        stringing = stringing+cur;
+    }
+    // console.log(stringing)
+    return [stringing,transformed];
+}
+
 class User
 {
     constructor(id, p, q, e,d){
@@ -105,6 +130,33 @@ AllUsers.push(One);
 AllUsers.push(Two);
 AllUsers.push(Three);
 
+
+function RSA(message)
+{
+    //message going from A to B
+    transformed = []
+    original = []
+    decrypted = []
+    m=0;
+    for(i=0;i<message.length;i++)
+    {
+        cur = message.charCodeAt(i)-97;
+        m = (m + (cur*(26**i))%437)%437;
+        original.push(cur);
+        cur = (cur**Two.publicKey)%Two.n;
+        transformed.push(cur);   
+    }
+
+    for(i=0;i<message.length;i++)
+    {
+        cur = transformed[i];
+        cur = (cur**Two.privatekey)%Two.n;
+        decrypted.push(cur);
+    }
+
+    return [transformed, original, decrypted,m];
+}
+
 function powerMod(base, exponent, modulus) {
     if (modulus === 1) return 0;
     var result = 1;
@@ -116,6 +168,97 @@ function powerMod(base, exponent, modulus) {
         base = (base * base) % modulus;
     }
     return result;
+}
+
+function finalRSA(message)
+{
+    //message going from A to B
+    transformed = []
+    original = []
+    gettingbackoriginal = []
+    m=0;
+    
+    for(i=0;i<message.length;i++)
+    {
+        cur = message.charCodeAt(i)-97;
+        original.push(cur);
+        m = (m + (cur*(26**(message.length-i-1)))%437)%437;
+        // original.push(cur);   
+    }
+
+    //encryption
+    encrpted = powerMod(m,25,437);
+    // (m**25)%437; 
+
+    decrypted = powerMod(encrpted, 301, 437);
+    // console.log("MEssage = ",m, " and Decrypted = ", decrypted);
+
+    temp = decrypted;
+    while(temp>=1)
+    {
+        rem= temp%26;
+        gettingbackoriginal.push(rem);
+        temp = Math.floor(temp/26)
+    }
+    
+    // (encrpted**301)%437;
+    return [m,encrpted, decrypted,original,gettingbackoriginal];
+
+}
+
+
+
+function finalRSA_experimanetal(message)
+{
+
+
+    //message going from A to B
+    transformed = []
+    original = []
+    gettingbackoriginal = []
+    m=0;
+    return_str = "";
+    offset = 0;
+    COM_SET = 150;
+    if (offset==0)
+    {
+        COM_SET = 150;
+    }
+    for(i=0;i<message.length;i++)
+    {
+        cur = message.charCodeAt(i)-offset;
+        original.push(cur);
+        m = (m + (cur*(COM_SET**(message.length-i-1)))%46927)%46927;
+        // original.push(cur);   
+    }
+    
+
+    //encryption
+    encrpted = powerMod(m,39423,46927);
+    
+    decrypted = powerMod(encrpted, 26767, 46927);
+    // console.log("MEssage = ",m, " and ecrption = ", encrpted,  " and Decrypted = ", decrypted);
+    temp = decrypted;
+    while(temp>=1)
+    {
+        rem= temp%COM_SET;
+        gettingbackoriginal.push(rem);
+        temp = Math.floor(temp/COM_SET);
+    }
+
+    for(b=0;b<gettingbackoriginal.length;b++)
+    {
+        return_str = return_str+String.fromCharCode(gettingbackoriginal[gettingbackoriginal.length-b-1]+offset);
+    }
+
+    // console.log("len encrypted = ", message.length, " len decrypted = ", gettingbackoriginal.length);
+    
+    // (encrpted**301)%437;
+    return [m,encrpted, decrypted,original,gettingbackoriginal,return_str];
+
+
+
+
 }
 
 function adapter(mess)
@@ -235,9 +378,11 @@ function decrypt(person1, person2, arr)
         str_to_retrun = str_to_retrun + return_str;
 
     }
-    return str_to_retrun;
-}
 
+    return str_to_retrun;
+    
+
+}
 function Checking(event)
 {
     event.preventDefault();
