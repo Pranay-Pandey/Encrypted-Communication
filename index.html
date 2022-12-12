@@ -93,11 +93,16 @@
                 <div class="row">
                     <div class="input-group">
                         <!-- <span class="input-group-text">First and last name</span> -->
-                        <input type="number" id="new-user-id"aria-label="First name" class="form-control" placeholder="id">
-                        <input type="number" id="new-user-p" aria-label="Last name" class="form-control" placeholder="p">
-                        <input type="number" id="new-user-q" aria-label="First name" class="form-control" placeholder="q">
-                        <input type="number" id="new-user-e" aria-label="Last name" class="form-control" placeholder="e">
-                        <input type="number" id="new-user-d" aria-label="Last name" class="form-control" placeholder="d">
+                        <input type="number" id="new-user-id"aria-label="First name" class="form-control" placeholder="id" 
+                        title="The number to represent the user in this system">
+                        <input type="number" id="new-user-p" aria-label="Last name" class="form-control" placeholder="p"
+                        title="One of the two prime divisors (other is q) of public key(N) of the user. The public key (N) is the base of operations calculated on the message ">
+                        <input type="number" id="new-user-q" aria-label="First name" class="form-control" placeholder="q"
+                        title="The security of this system is based on fact that getting p and q from N is NP hard. Therefore p and q must be large and difficult to calculate">
+                        <input type="number" id="new-user-e" aria-label="Last name" class="form-control" placeholder="e"
+                        title = "The encryption key (relatively prime to euler totient function of N) is used for encrypting a message to be sent to this user. The message is raised to this power">
+                        <input type="number" id="new-user-d" aria-label="Last name" class="form-control" placeholder="d"
+                        title = "The decryption key is inverse of e modulo (euler totient function of N). This key is private and must not be shared. It is used to decode the mesaage sent to this user. The encrypted message is raised to this power to get plain text." >
                         <button class="btn btn-outline-secondary" type="button" id="new-user-button">Make New User</button>
                       </div>
                 </div>
